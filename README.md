@@ -23,3 +23,9 @@ Here's the difference:
 - FR "system shall do <requirement>", NFR "system shall be <requirement>"
 
 ## Capacity Estimations and Constraints
+
+- Traffic estimates. Is the system read or write heavy? e.g. 20/1 read to write ratio. To hit slightly more than 1 million requests per day, we only need 12 requests per second (1,000,000 / 60 / 60 / 24). 
+- Storage estimates. 1 mil requests, each of size 1kb will require 1MB storage.
+- Bandwidth estimates. 1 mil requests per second, each of size 100kb will result in 1MB/s.
+- Memory estimates, usually for cache. 
+
