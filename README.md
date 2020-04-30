@@ -29,3 +29,25 @@ Here's the difference:
 - Bandwidth estimates. 1 mil requests per second, each of size 100kb will result in 1MB/s.
 - Memory estimates, usually for cache. 
 
+
+## System Components
+
+### Load balancer vs reverse proxy
+
+A **reverse proxy** accepts a request from a client, forwards it to a server that can fulfil it, and returns the server's response to the client.
+
+A **load balancer** distributes incoming client requests among a group of servers, in each case returning the response from the selected servers to the appropriate client.
+
+Nginx is able to serve as both load balancer and reverse proxy.
+
+Reference: https://www.nginx.com/resources/glossary/reverse-proxy-vs-load-balancer/
+
+### Load balancing algorithm
+
+- round robin
+- weighted round robin - same as round robin, but some servers gets a larger share of the overall traffic
+- source ip hash - connections are distributed to backend servers based on the source ip address. If a webnode fails and is taken out of service the distribution changes. As long as all servers are running a given client ip address will always go to the same web server.
+- url hash. Much like source IP hash, except hashing is done on the URL of the request. Useful when load balancing in front of proxy caches, as requests for a given object will always go to just one backend cache. This avoids cache duplication, having the same object stored in several / all caches, and increases effective capacity of the backend caches.
+- least connections, weighted least connections. The load balancer monitors the number of open connections for each server, and sends to the least busy server.
+- least traffic, weighted least traffic. The load balancer monitors the bitrate from each server, and sends to the server that has the least outgoing traffic.
+- leat latency. Perlbal makes a quick HTTP OPTIONS request to backend servers, and sends the request to the first server to answer.
