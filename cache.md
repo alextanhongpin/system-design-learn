@@ -1,4 +1,14 @@
+
 # Caching strategy
+
+## Thoughts
+- What are the various caching strategy?
+- Which strategy to use?
+- How to implement it in your application?
+- How does caching works with personalized data (e.g. logged in user, owner) Fragment cache? 
+- Does caching really improve performance?
+
+## Patterns
 
 - cache aside
 - write-through cache
